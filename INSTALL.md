@@ -1,17 +1,17 @@
 # BRAKER 安装与运行（通用配方）
 
 本文件与同目录 `install.sh` / `run.sh` 归属 **SiYangming/BRAKER** fork，
-从教学流水线 `software_installation.sh` / `run.sh` 蒸馏而来，去掉 `/opt/biosoft`、`/home/train` 等硬编码。
+从教学流水线安装/运行段蒸馏而来，去掉硬编码路径。
 
-bioskills 只保留链接，**不入库**本地 `BRAKER-*.tar.gz`。
+bioskills 只保留链接，**不入库**本地 `BRAKER-*.tar.gz`（压缩包在本仓 Release）。
 
-| 资源 | 结论 |
-|------|------|
-| `BRAKER-2.1.5.tar.gz` | 与官方 tag 字节级一致，用 GitHub 下载即可 |
-| `BRAKER1_v1.8.tar.gz` | 上游无对应 tag；脚本已放入 `legacy/BRAKER_v1.8/`（历史参考，默认不用） |
+| 资源 | 获取方式 |
+|------|----------|
+| `BRAKER-2.1.5.tar.gz` | [Release v2.1.5](https://github.com/SiYangming/BRAKER/releases/tag/v2.1.5)（与官方 tag 字节一致） |
+| `BRAKER1_v1.8.tar.gz` | [Release BRAKER1_v1.8](https://github.com/SiYangming/BRAKER/releases/tag/BRAKER1_v1.8)（上游无 tag；历史参考） |
 
 上游：<https://github.com/Gaius-Augustus/BRAKER>  
-本 fork：<https://github.com/SiYangming/BRAKER>（与上游 master 同步；本仓附加安装/运行配方）  
+本 fork：<https://github.com/SiYangming/BRAKER>  
 BRAKER4（推荐新项目）：<https://github.com/Gaius-Augustus/BRAKER4>
 
 ---
@@ -22,11 +22,11 @@ BRAKER4（推荐新项目）：<https://github.com/Gaius-Augustus/BRAKER4>
 - 亦可：`v2.1.6` / 当前 master（BRAKER3 能力）；与 BRAKER4 **不直接互换**
 
 ```bash
-# 官方可复现源码（勿依赖本地 tar）
+# Release 资产（教学同款文件名）
 curl -fsSL -o BRAKER-2.1.5.tar.gz \
-  https://github.com/Gaius-Augustus/BRAKER/archive/refs/tags/v2.1.5.tar.gz
-# 或本 fork 同 tag：
-# https://github.com/SiYangming/BRAKER/archive/refs/tags/v2.1.5.tar.gz
+  -L https://github.com/SiYangming/BRAKER/releases/download/v2.1.5/BRAKER-2.1.5.tar.gz
+# 或官方 tag 源码包：
+# https://github.com/Gaius-Augustus/BRAKER/archive/refs/tags/v2.1.5.tar.gz
 ```
 
 ---
@@ -82,10 +82,12 @@ GENOME=... BAM=... SPECIES=... SKIP_ETP=1 bash run.sh
 
 ## 历史：BRAKER1 v1.8
 
-仅 RNA-seq；CentOS 6 教学曾用。源码见 [`legacy/BRAKER_v1.8/`](legacy/BRAKER_v1.8/)。新流程请用 BRAKER2+ 或 BRAKER4。
+仅 RNA-seq；CentOS 6 教学曾用。压缩包见 [Release BRAKER1_v1.8](https://github.com/SiYangming/BRAKER/releases/tag/BRAKER1_v1.8)。新流程请用 BRAKER2+ 或 BRAKER4。
 
 ```bash
-# 仅作考古；勿与 BRAKER2 混用 PATH
-export PATH="/path/to/legacy/BRAKER_v1.8:$PATH"
+curl -fsSL -L -o BRAKER1_v1.8.tar.gz \
+  https://github.com/SiYangming/BRAKER/releases/download/BRAKER1_v1.8/BRAKER1_v1.8.tar.gz
+tar zxf BRAKER1_v1.8.tar.gz
+export PATH="$PWD/BRAKER_v1.8:$PATH"
 braker.pl --species=NAME --genome=genome.fa --bam=rnaseq.bam
 ```
