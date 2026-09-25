@@ -1,7 +1,7 @@
 # BRAKER 运行示例（ETP）
 
 教学流水线「使用 BRAKER」段的通用写法：软屏蔽基因组 + RNA-seq BAM + 同源蛋白（`--etpmode`）。
-后处理脚本在 [`example/postprocess/`](example/postprocess/)。
+后处理脚本与 `braker.pl` 同在 [`scripts/`](scripts/)：`braker_gtf_fix.pl`、`gtf2gff3.pl`、`gff3_clear.pl`。
 
 前置：已按 [INSTALL.md](INSTALL.md) 装好 `braker.pl` 及依赖；GeneMark 密钥 `~/.gm_key`。
 
@@ -47,11 +47,10 @@ export PYTHON3_PATH=...
 export CDBTOOLS_PATH=...   # 若用 PASA 自带 cdbfasta 等
 ```
 
-将后处理脚本加入 PATH：
+将本仓 `scripts/` 加入 PATH（含 `braker.pl` 与后处理脚本）：
 
 ```bash
-REPO="$(cd "$(dirname "$0")" && pwd)"   # 或手动设为本仓根目录
-export PATH="$REPO/example/postprocess:$PATH"
+export PATH="/path/to/BRAKER/scripts:$PATH"
 ```
 
 ---
@@ -104,9 +103,3 @@ mv braker.gff3.tmp braker.gff3
 ```
 
 产物：`braker/braker.gtf`（原始）→ 工作区 `braker.gtf` / `braker.gff3`。
-
----
-
-## 脚本一览
-
-见 [`example/postprocess/README.md`](example/postprocess/README.md)。
