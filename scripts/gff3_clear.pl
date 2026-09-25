@@ -1,4 +1,8 @@
 #!/usr/bin/perl
+# Source: https://github.com/SiYangming/geta (bin/gff3_clear.pl)
+#   Upstream project: chenlianfu/geta — general GFF3 ID rewrite utility, not BRAKER-specific.
+#   Kept here so the teaching BRAKER example.md postprocess PATH is self-contained;
+#   prefer installing/using geta when available for other gene-prediction steps.
 use strict;
 use Getopt::Long;
 

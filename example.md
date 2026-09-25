@@ -99,6 +99,7 @@ braker_gtf_fix.pl braker/braker.gtf > braker.gtf
 
 gtf2gff3.pl braker.gtf > braker.gff3
 gff3_clear.pl --prefix braker braker.gff3 > braker.gff3.tmp
+# gff3_clear.pl：来自 geta（https://github.com/SiYangming/geta），通用 GFF3 前缀重写
 mv braker.gff3.tmp braker.gff3
 ```
 
